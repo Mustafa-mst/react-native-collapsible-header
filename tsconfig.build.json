@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "lib/module",
+    "module": "ESNext",
+    "declaration": true,
+    "declarationDir": "lib/typescript",
+    "noEmit": false
+  },
+  "include": ["src"],
+  "exclude": ["**/*.test.ts", "**/*.test.tsx"]
+}

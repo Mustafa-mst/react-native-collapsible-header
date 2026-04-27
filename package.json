@@ -1,6 +1,6 @@
 {
   "name": "rn-collapsible-header",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A lightweight, animated collapsible header for React Native with a fading background and a title that appears as content scrolls.",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",

@@ -12,15 +12,18 @@ const DEFAULT_SCROLL_THRESHOLD_START = 50
 const DEFAULT_SCROLL_THRESHOLD_END = 120
 const TITLE_TRANSLATE_Y = 10
 
+export const COLLAPSIBLE_HEADER_HEIGHT = 48
+
 export type CollapsibleHeaderProps = {
   scrollY: SharedValue<number>
   titleScrollThreshold: SharedValue<number>
   title: string
-  leftIcon: ReactNode
+  leftIcon?: ReactNode
   rightIcon?: ReactNode
   backgroundColor?: string
   scrollThresholdStart?: number
   scrollThresholdEnd?: number
+  headerHeight?: number
   containerStyle?: StyleProp<ViewStyle>
   titleStyle?: StyleProp<TextStyle>
   renderTitle?: (title: string) => ReactNode
@@ -35,6 +38,7 @@ const CollapsibleHeaderBase: React.FC<CollapsibleHeaderProps> = ({
   backgroundColor = '#ffffff',
   scrollThresholdStart = DEFAULT_SCROLL_THRESHOLD_START,
   scrollThresholdEnd = DEFAULT_SCROLL_THRESHOLD_END,
+  headerHeight = COLLAPSIBLE_HEADER_HEIGHT,
   containerStyle,
   titleStyle,
   renderTitle
@@ -74,8 +78,8 @@ const CollapsibleHeaderBase: React.FC<CollapsibleHeaderProps> = ({
       <Animated.View
         style={[StyleSheet.absoluteFillObject, { backgroundColor }, animatedBgStyle]}
       />
-      <View style={styles.content}>
-        {leftIcon}
+      <View style={[styles.content, { height: headerHeight }]}>
+        {leftIcon ?? <View style={styles.iconPlaceholder} />}
         <Animated.View style={[styles.titleWrapper, animatedTitleStyle]}>
           {renderTitle ? (
             renderTitle(title)
@@ -103,8 +107,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    height: 48
+    paddingHorizontal: 16
   },
   titleWrapper: {
     flex: 1,
